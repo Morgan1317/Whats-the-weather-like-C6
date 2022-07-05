@@ -4,7 +4,7 @@ var cityName = '';
 // initial search is initiated based on user input
 
 $('#searchBtn').on('click',function(){
-
+    
     cityName = $('#input').val().trim().toUpperCase();
     // clear previous search results
     $('#forcast').text('')
@@ -19,6 +19,7 @@ $('#searchBtn').on('click',function(){
 
 });
 var getCoord = function(){
+     
     // get latitude and longitude for the city 
     var apiUrl = `https://api.openweathermap.org/data/2.5/weather/?q=${cityName}&appid=${myKey}&units=imperial`;
 
@@ -29,14 +30,14 @@ var getCoord = function(){
             response.json().then(function(data) {
                 // pass the data into the new api to get weather for the city
                 weather(data);
-                
+                storageSave(cityName);
             });
         } else {
-            alert('Error: City Not Found');
+            alert('Error: City Not Found, please type in a valid city name');
         }
         
         })
-        storageSave(cityName);
+        // storageSave(cityName);
 };
 
 // save the inputs
@@ -55,7 +56,7 @@ var storageSave = function(){
         for(var i=0; i<cityArray.length; i++){
             
             // checks if city name is alreay in array, if it is it does not push to array
-            if(cityArray.indexOf(cityName) !== -1 || cityArray[i] === '')  {
+            if(cityArray.indexOf(cityName) !== -1 || cityArray[i] === null)  {
                 
                 return; 
             }else{  
@@ -88,10 +89,6 @@ var loadInputs = function() {
     }
     // appends the new city name 
     $('.here').append(cityBtn)
-  
-    
-   
-
 };
 var initialLoad = function(){
 
@@ -239,12 +236,13 @@ var displayWeather = function(data){
 initialLoad();
 
 $('.cityBtn').on('click',function(){
+    
         // clear previous results
-        // location.reload();
         $('#forcast').text('')
         $('#currentDay').text('')
         cityName = $(this).text()
         console.log(cityName)
 
         getCoord();
+
 });
