@@ -4,7 +4,6 @@ var cityName = '';
 // initial search is initiated based on user input
 
 $('#searchBtn').on('click',function(){
-    
     cityName = $('#input').val().trim().toUpperCase();
     // clear previous search results
     $('#forcast').text('')
@@ -12,11 +11,6 @@ $('#searchBtn').on('click',function(){
     $('textarea').val('')
     
     getCoord();
-    
-
-
-
-
 });
 var getCoord = function(){
      
@@ -76,20 +70,20 @@ var storageSave = function(){
 // load inputs onto the screen
 var loadInputs = function() {
    
-
     cityArray = JSON.parse(localStorage.getItem("input"));
     // if there is no user input yet, set to empty string
 
     // gets city name content for this input
     for(var i=0; i<cityArray.length; i++){
-        var cityBtn=document.createElement('button')
-        $(cityBtn).addClass('col cityBtn')
-        cityBtn.innerHTML = cityArray[i]
-       
+        var cityBtn=document.createElement('button');
+        $(cityBtn).addClass('col cityBtn');
+        cityBtn.innerHTML = cityArray[i];
     }
     // appends the new city name 
-    $('.here').append(cityBtn)
+    $('.here').append(cityBtn);
+
 };
+
 var initialLoad = function(){
 
     cityArray = JSON.parse(localStorage.getItem("input"));
@@ -100,15 +94,14 @@ var initialLoad = function(){
 
         // gets city name content for this input
         for(var i=0; i<cityArray.length; i++){
-            var cityBtn=document.createElement('button')
-            $(cityBtn).addClass('col cityBtn')
-            cityBtn.innerHTML = cityArray[i]
-            $('.here').append(cityBtn)
+            var cityBtn=document.createElement('button');
+            $(cityBtn).addClass('col cityBtn');
+            cityBtn.innerHTML = cityArray[i];
+            $('.here').append(cityBtn);
         }
     }
 }
 var weather = function(data){
-
     // get the latitude and longitude of the city that the user input
     var lat = data.coord.lat;
     var long = data.coord.lon;
@@ -242,15 +235,17 @@ var displayWeather = function(data){
 
 initialLoad();
 
-$('.cityBtn').on('click',function(){
-        // clear previous results
-        $('#forcast').text('')
-        $('#currentDay').text('')
-        cityName = $(this).text()
-        console.log(cityName)
-
-        getCoord();
-
+$('.here').on('click','.cityBtn',function(){
         
+    // clear previous results
+    $('#forcast').text('')
+    $('#currentDay').text('')
+    cityName = $(this).text()
+    console.log(cityName)
+
+ 
+    getCoord();
 
 });
+
+
