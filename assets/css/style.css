@@ -42,11 +42,23 @@ textarea{
     background-color:#0000FF ;
     color: #7EC8E3;
    
-  }
-#savedBtn{
-padding-left: 0;
-padding-right: 0;
 }
+#clear, .cityBtn {
+    background-color: rgb(166, 163, 163);
+    text-align: center;
+    color: black;
+    width: 90%; 
+    border-bottom: #050A30 solid 3px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 6px 0;
+}
+#clear:hover,.cityBtn:hover{
+    background-color:rgb(77, 74, 74) ;
+    color: white;
+}
+
 .low {
     background-color: rgb(41, 141, 41);
     width: fit-content;

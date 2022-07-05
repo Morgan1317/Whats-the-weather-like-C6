@@ -81,13 +81,16 @@ var loadInputs = function() {
 
     // gets city name content for this input
     for(var i=0; i<cityArray.length; i++){
-        var cityBtn=document.createElement('button')
-        $(cityBtn).addClass('col cityBtn')
-        cityBtn.innerHTML = cityArray[i]
+        var cityBtn=document.createElement('button');
+        $(cityBtn).addClass('col cityBtn');
+        cityBtn.innerHTML = cityArray[i];
        
     }
     // appends the new city name 
-    $('.here').append(cityBtn)
+    $('.here').append(cityBtn);
+
+    
+
   
     
    
@@ -108,6 +111,7 @@ var initialLoad = function(){
             cityBtn.innerHTML = cityArray[i]
             $('.here').append(cityBtn)
         }
+     
     }
 }
 var weather = function(data){
@@ -236,7 +240,7 @@ var displayWeather = function(data){
 
 };
 
-initialLoad();
+
 
 $('.cityBtn').on('click',function(){
         // clear previous results
@@ -248,3 +252,13 @@ $('.cityBtn').on('click',function(){
 
         getCoord();
 });
+
+// clear search history 
+// $('#clear').on('click',function(){
+//    localStorage.removeItem('input')
+//    location.reload();
+// });
+
+
+
+initialLoad();
