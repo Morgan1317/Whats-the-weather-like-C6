@@ -11,12 +11,14 @@ fetch(apiUrl)
       // request was successful
       if (response.ok) {
         response.json().then(function(data) {
+            console.log(data)
             // get the latitude and longitude of the city that the user input
             var lat = data.coord.lat;
             var long = data.coord.lon;
             // pass the data into the new api to get weather for the city
             weather(data);
-            console.log(lat,long)
+            
+            
 
            
             
@@ -37,19 +39,26 @@ var weather = function(data){
     
 
     // get weather data for the city
-    console.log(weatherUrl)
+   
     fetch(weatherUrl)
     .then(function(response) {
         // request was successful
         if (response.ok) {
         console.log(response);
         response.json().then(function(data) {
+           
+            // dailyDate = data.
+            dailyTemp = data.daily[0].temp;
+            dailyHum = data.daily[0].humidity;
+            dailyWind = data.daily[0].wind_speed;
+            currentTemp = data.current.temp; 
+            currentHum = data.current.humidity; 
+            currentWind = data.current.wind_speed; 
+            currentUvi = data.current.uvi; 
+            console.log(currentWind);
+            displayCurrent(data);
+
             // displayWeather(data);
-            console.log(data)
-            console.log(data.main.temp);
-            console.log(data.main.humidity)
-            console.log(data.wind.speed)
-            
         });
         } else {
         alert('Error: City Not Found');
@@ -57,10 +66,36 @@ var weather = function(data){
     })
 };
 
+var displayCurrent = function(current){
+    // get current date
+    var currentDate = new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"numeric", day:"numeric"}) ;
+      
+    var ulEl = $('<ul>');
+    var li1 = $('<li>');
+    var li2 = $('<li>');
+    var li3 = $('<li>');
+    var li4 = $('<li>');
+
+    $('#currentDay').append(ulEl);
+    $(ulEl).attr('style','list-style:none')
+    $(ulEl).text(currentDate);
+    $(ulEl).append(li1,li2,li3,li4);
+    
+    $(li1).text('Temp: ' + currentTemp + ' ℉');
+    $(li2).text('Wind: '+ currentWind + ' MPH');
+    $(li3).text('Humidity: ' + currentHum + ' %');
+    $(li4).text('UV index: '+ currentUvi);
+};
+// display the  data 
 var displayWeather = function(daily){
-    
-    for(var i = 0; i<data.daily; i++)
-    
+   
+    // run through the daily outputs for the city 
+    for(var i = 0; i<data.daily; i++){
+        
+        var dailyEl = document.createElement("p");
+        
+    }
+
 }
 
 
