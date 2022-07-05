@@ -25,19 +25,28 @@ textarea{
     width: 85%;
 }
 
-#searchBtn{
+.btn {
     background-color: #7EC8E3;
     border: #7EC8E3;
     margin: 5px;
-    width: 75%;
+    width: 80%;
     text-align: center;
     color: #0000FF;
+    border-bottom: #050A30 solid 3px;
+    margin-bottom: 10px;
+    
 }
-#searchBtn:hover {
+
+.btn:hover {
     font-size: 20px;
     background-color:#0000FF ;
     color: #7EC8E3;
+   
   }
+#savedBtn{
+padding-left: 0;
+padding-right: 0;
+}
 .low {
     background-color: rgb(41, 141, 41);
     width: fit-content;

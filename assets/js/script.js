@@ -23,25 +23,33 @@ $('#searchBtn').on('click',function(){
         
         })
         storageSave(cityName);
+        loadInputs();
 
 
 });
 
 var storageSave = function(){
                 
-    userArray = JSON.parse(localStorage.getItem('input'));
-    if(!userArray){
-        userArray = [];
+    cityArray = JSON.parse(localStorage.getItem('input'));
+    if(!cityArray){
+        cityArray = [];
     };
-    userArray.push(cityName);
-    localStorage.setItem('input',JSON.stringify(userArray));
+    cityArray.push(cityName);
+    localStorage.setItem('input',JSON.stringify(cityArray));
 }
 var loadInputs = function() {
-    userArray = JSON.parse(localStorage.getItem("input"));
+    cityArray = JSON.parse(localStorage.getItem("input"));
     // if there is no user input yet, set to empty string
-    if(!userArray){
-        userArray = [];
+    if(!cityArray){
+        cityArray = [];
     };
+console.log(cityArray)
+    for(var i=0; i<cityArray.length; i++){
+        var cityBtn=document.createElement('button')
+        $(cityBtn).addClass('btn col-4 form-inline')
+        cityBtn.innerHTML = cityArray[i]
+        $('#savedBtn').append(cityBtn)
+    }
 };
 var weather = function(data){
 
@@ -132,7 +140,6 @@ var displayCurrent = function(current){
     } else {
         $(li4).addClass('extreme')
     }
-    console.log(currentUvi)
  
 };
 // display the  data 
@@ -171,3 +178,4 @@ var displayWeather = function(data){
 };
  
 
+loadInputs();
