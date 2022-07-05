@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css" />
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Whats the Weather like</title>
 </head>
 <body>
@@ -15,14 +16,14 @@
         </h1>
    </header>
 
-    <main class="flex-column justify-space-between">
-        <div class="col-12 col-md-4">
+    <main class="row">
+        <div class="col-4">
             <h2>Search for a City:</h2>
-            <textarea></textarea>
-            <button>Search</button>
+            <textarea id="input"></textarea>
+            <button id="searchBtn">Search</button>
         </div>
-        <div class= "col-12 col-md-4" id="currentDay"></div>
-        <div class="col-12 col-md-4 " id="forcast"></div> 
+        <div class= "col-8" id="currentDay"></div>
+        <div class="row col" id="forcast"></div> 
     </main>
 
     
