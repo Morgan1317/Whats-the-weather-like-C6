@@ -24,6 +24,9 @@ margin: 5px;
 textarea{
     width: 85%;
 }
+div{
+    padding: 20px;
+}
 
 .btn {
     background-color: #7EC8E3;

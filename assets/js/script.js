@@ -203,15 +203,20 @@ var displayCurrent = function(current){
 var displayWeather = function(data){
     
     // run through the daily outputs for the city 
+    var head = $('<h2>')
+    $(head).addClass('row col-12')
+    $('#forcast').append(head)
+    $(head).text('5-day Forcast')
     for(var i = 0; i < 5; i++){
         nextDays = new Date() ;
         nextDays.setDate(nextDays.getDate()+1+i);
         
-        var formatDates = nextDays.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"numeric", day:"numeric"})
-    
+        var formatDates = nextDays.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"numeric", day:"numeric"});
+
         var divEl = $('<div>');
         $(divEl).addClass('col-2')
         $('#forcast').append(divEl);
+        
         var p1 = $('<p>');
         var p2 = $('<p>');
         var p3 = $('<p>');
@@ -219,6 +224,7 @@ var displayWeather = function(data){
         var p5 = $('<p>');
         var img = document.createElement("img");
         img.src =`https://openweathermap.org/img/w/${iconArray[i]}.png`
+
         $(divEl).append(p5, p4, p1, p2, p3);
 
         $(p4).append(img);
@@ -228,6 +234,7 @@ var displayWeather = function(data){
         $(p5).text(formatDates);
 
         $(p5).attr('style','font-weight:bold')
+        
       
     }
 
@@ -236,7 +243,6 @@ var displayWeather = function(data){
 initialLoad();
 
 $('.cityBtn').on('click',function(){
-    
         // clear previous results
         $('#forcast').text('')
         $('#currentDay').text('')
@@ -244,5 +250,7 @@ $('.cityBtn').on('click',function(){
         console.log(cityName)
 
         getCoord();
+
+        
 
 });
