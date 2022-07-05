@@ -141,10 +141,11 @@ var displayWeather = function(data){
     
     // run through the daily outputs for the city 
     for(var i = 0; i < 5; i++){
+        nextDays = new Date() ;
+        nextDays.setDate(nextDays.getDate()+1+i);
+        
+        var formatDates = nextDays.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"numeric", day:"numeric"})
     
-        // nextDate = new Date();
-        // nextDate.setDate(nextDate.getDate()+1);
-        // console.log(nextDate)
         var divEl = $('<div>');
         $(divEl).addClass('col-2')
         $('#forcast').append(divEl);
@@ -155,12 +156,15 @@ var displayWeather = function(data){
         var p5 = $('<p>');
         var img = document.createElement("img");
         img.src =`https://openweathermap.org/img/w/${iconArray[i]}.png`
-        $(divEl).append(p4, p1, p2, p3);
+        $(divEl).append(p5, p4, p1, p2, p3);
 
         $(p4).append(img);
         $(p1).text('Temp: ' + tempArray[i] + ' ℉');
         $(p3).text('Humidity: ' + humArray[i] + ' %');
         $(p2).text('Wind: '+ windArray[i] + ' MPH');
+        $(p5).text(formatDates);
+
+        $(p5).attr('style','font-weight:bold')
       
     }
 
