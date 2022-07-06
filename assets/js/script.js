@@ -82,6 +82,9 @@ var loadInputs = function() {
     // appends the new city name 
     $('.here').append(cityBtn);
 
+
+
+
 };
 
 var initialLoad = function(){
@@ -90,6 +93,10 @@ var initialLoad = function(){
     // if there is no user input yet, set to empty string
     if(!cityArray){
         cityArray=[];
+        var clear=document.createElement('button');
+        $(clear).addClass('col clearBtn');
+        clear.innerHTML = 'Clear Recent Searches';
+        $('.here').append(clear);
     } else{
 
         // gets city name content for this input
@@ -99,8 +106,14 @@ var initialLoad = function(){
             cityBtn.innerHTML = cityArray[i];
             $('.here').append(cityBtn);
         }
+        var clear=document.createElement('button');
+        $(clear).addClass('col clearBtn');
+        clear.innerHTML = 'Clear Recent Searches';
+        $('.here').append(clear);
+
     }
 }
+
 var weather = function(data){
     // get the latitude and longitude of the city that the user input
     var lat = data.coord.lat;
@@ -245,6 +258,23 @@ $('.here').on('click','.cityBtn',function(){
 
  
     getCoord();
+
+});
+$('.here').on('click','.clearBtn',function(){
+        
+    // clear previous results
+    $('#forcast').text('');
+    $('#currentDay').text('');
+    
+    localStorage.clear();
+    localStorage.removeItem('input');
+    $('.here').empty().next().val();
+    $('.here').text('Recent Searches');
+
+    var clear=document.createElement('button');
+    $(clear).addClass('col clearBtn');
+    clear.innerHTML = 'Clear Recent Searches';
+    $('.here').append(clear);
 
 });
 
