@@ -6,9 +6,9 @@ var cityName = '';
 $('#searchBtn').on('click',function(){
     cityName = $('#input').val().trim().toUpperCase();
     // clear previous search results
-    $('#forcast').text('')
-    $('#currentDay').text('')
-    $('textarea').val('')
+    $('#forcast').text('');
+    $('#currentDay').text('');
+    $('textarea').val('');
     
     getCoord();
 });
@@ -55,7 +55,7 @@ var storageSave = function(){
                 return; 
             }else{  
                 cityArray.push(cityName);
-                localStorage.setItem('input',JSON.stringify(cityArray))
+                localStorage.setItem('input',JSON.stringify(cityArray));
                 loadInputs();
                 return; 
                
@@ -167,27 +167,27 @@ var displayCurrent = function(current){
     $('#currentDay').append(title);
     $('#currentDay').append(ulEl);
 
-    $(ulEl).attr('style','list-style:none')
+    $(ulEl).attr('style','list-style:none');
 
-    // $(ulEl).append(image);
+ 
     $(ulEl).append(li1,li2,li3,li4);
     
-    $(title).text(cityName + ", " + " " + currentDate)
+    $(title).text(cityName + ", " + " " + currentDate);
     $(title).append(img);
     $(li1).text('Temp: ' + currentTemp + ' ℉');
     $(li2).text('Wind: '+ currentWind + ' MPH');
     $(li3).text('Humidity: ' + currentHum + ' %');
     $(li4).text('UV index: '+ currentUvi);
     if (currentUvi < 2){
-        $(li4).addClass('low')
+        $(li4).addClass('low');
     } else if (3 <= currentUvi <= 5){
-        $(li4).addClass('moderate')
+        $(li4).addClass('moderate');
     } else if (6 <= currentUvi <=7){
-        $(li4).addClass('high')
+        $(li4).addClass('high');
     } else if (8 <= currentUvi <= 10){
-        $(li4).addClass('very-high')
+        $(li4).addClass('very-high');
     } else {
-        $(li4).addClass('extreme')
+        $(li4).addClass('extreme');
     }
  
 };
@@ -196,10 +196,10 @@ var displayCurrent = function(current){
 var displayWeather = function(data){
     
     // run through the daily outputs for the city 
-    var head = $('<h2>')
-    $(head).addClass('row col-12')
-    $('#forcast').append(head)
-    $(head).text('5-day Forcast')
+    var head = $('<h2>');
+    $(head).addClass('row col-12');
+    $('#forcast').append(head);
+    $(head).text('5-day Forcast');
     for(var i = 0; i < 5; i++){
         nextDays = new Date() ;
         nextDays.setDate(nextDays.getDate()+1+i);
@@ -207,7 +207,7 @@ var displayWeather = function(data){
         var formatDates = nextDays.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"numeric", day:"numeric"});
 
         var divEl = $('<div>');
-        $(divEl).addClass('col-2')
+        $(divEl).addClass('col-2');
         $('#forcast').append(divEl);
         
         var p1 = $('<p>');
@@ -216,7 +216,7 @@ var displayWeather = function(data){
         var p4 = $('<p>');
         var p5 = $('<p>');
         var img = document.createElement("img");
-        img.src =`https://openweathermap.org/img/w/${iconArray[i]}.png`
+        img.src =`https://openweathermap.org/img/w/${iconArray[i]}.png`;
 
         $(divEl).append(p5, p4, p1, p2, p3);
 
@@ -226,7 +226,7 @@ var displayWeather = function(data){
         $(p2).text('Wind: '+ windArray[i] + ' MPH');
         $(p5).text(formatDates);
 
-        $(p5).attr('style','font-weight:bold')
+        $(p5).attr('style','font-weight:bold');
         
       
     }
@@ -238,10 +238,10 @@ initialLoad();
 $('.here').on('click','.cityBtn',function(){
         
     // clear previous results
-    $('#forcast').text('')
-    $('#currentDay').text('')
-    cityName = $(this).text()
-    console.log(cityName)
+    $('#forcast').text('');
+    $('#currentDay').text('');
+    cityName = $(this).text();
+
 
  
     getCoord();
