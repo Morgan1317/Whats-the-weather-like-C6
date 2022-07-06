@@ -105,22 +105,44 @@ var displayCurrent = function(current){
  
     $(ulEl).append(li1,li2,li3,li4);
     
+    console.log(currentUvi)
     $(title).text(cityName + ", " + " " + currentDate);
     $(title).append(img);
     $(li1).text('Temp: ' + currentTemp + ' ℉');
     $(li2).text('Wind: '+ currentWind + ' MPH');
     $(li3).text('Humidity: ' + currentHum + ' %');
     $(li4).text('UV index: '+ currentUvi);
+    debugger;
     if (currentUvi < 2){
         $(li4).addClass('low');
-    } else if (3 <= currentUvi <= 5){
+        $(li4).removeClass('moderate');
+        $(li4).removeClass('high');
+        $(li4).removeClass('very-high');
+        $(li4).removeClass('extreme');
+    } else if (currentUvi <5){
         $(li4).addClass('moderate');
-    } else if (6 <= currentUvi <=7){
+        $(li4).removeClass('low');
+        $(li4).removeClass('high');
+        $(li4).removeClass('very-high');
+        $(li4).removeClass('extreme');
+    } else if (currentUvi <8){
         $(li4).addClass('high');
-    } else if (8 <= currentUvi <= 10){
+        $(li4).removeClass('low');
+        $(li4).removeClass('moderate');
+        $(li4).removeClass('very-high');
+        $(li4).removeClass('extreme');
+    } else if (currentUvi < 11){
         $(li4).addClass('very-high');
+        $(li4).removeClass('low');
+        $(li4).removeClass('moderate');
+        $(li4).removeClass('high');
+        $(li4).removeClass('extreme');
     } else {
         $(li4).addClass('extreme');
+        $(li4).removeClass('low');
+        $(li4).removeClass('moderate');
+        $(li4).removeClass('high');
+        $(li4).removeClass('very-high');
     }
  
 };
