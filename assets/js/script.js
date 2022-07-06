@@ -34,86 +34,6 @@ var getCoord = function(){
     
 };
 
-// save the inputs
-var storageSave = function(){
- 
-                
-    cityArray = JSON.parse(localStorage.getItem('input'));
- 
-    if(!cityArray){
-        cityArray = [];
-        cityArray.push(cityName);
-        localStorage.setItem('input',JSON.stringify(cityArray));
-        loadInputs();
-
-    } else {
-        for(var i=0; i<cityArray.length; i++){
-            
-            // checks if city name is alreay in array, if it is it does not push to array and is valid
-            if(cityArray.indexOf(cityName) !== -1 || cityArray[i] === null)  {
-                
-                return; 
-            }else{  
-                cityArray.push(cityName);
-                localStorage.setItem('input',JSON.stringify(cityArray));
-                loadInputs();
-                return; 
-               
-            }  
- 
-        }
-    }
-    
-  
-    
-}
-// load inputs onto the screen
-var loadInputs = function() {
-   
-    cityArray = JSON.parse(localStorage.getItem("input"));
-    // if there is no user input yet, set to empty string
-
-    // gets city name content for this input
-    for(var i=0; i<cityArray.length; i++){
-        var cityBtn=document.createElement('button');
-        $(cityBtn).addClass('col cityBtn');
-        cityBtn.innerHTML = cityArray[i];
-    }
-    // appends the new city name 
-    $('.here').append(cityBtn);
-
-
-
-
-};
-
-var initialLoad = function(){
-
-    cityArray = JSON.parse(localStorage.getItem("input"));
-    // if there is no user input yet, set to empty string
-    if(!cityArray){
-        cityArray=[];
-        var clear=document.createElement('button');
-        $(clear).addClass('col clearBtn');
-        clear.innerHTML = 'Clear Recent Searches';
-        $('.here').append(clear);
-    } else{
-
-        // gets city name content for this input
-        for(var i=0; i<cityArray.length; i++){
-            var cityBtn=document.createElement('button');
-            $(cityBtn).addClass('col cityBtn');
-            cityBtn.innerHTML = cityArray[i];
-            $('.here').append(cityBtn);
-        }
-        var clear=document.createElement('button');
-        $(clear).addClass('col clearBtn');
-        clear.innerHTML = 'Clear Recent Searches';
-        $('.here').append(clear);
-
-    }
-}
-
 var weather = function(data){
     // get the latitude and longitude of the city that the user input
     var lat = data.coord.lat;
@@ -162,7 +82,7 @@ var weather = function(data){
         }
     })
 };
-
+// display current conditions
 var displayCurrent = function(current){
     document.getElementById('forcast').text = '';
     
@@ -245,8 +165,86 @@ var displayWeather = function(data){
     }
 
 };
+// save the inputs
+var storageSave = function(){
+ 
+                
+    cityArray = JSON.parse(localStorage.getItem('input'));
+ 
+    if(!cityArray){
+        cityArray = [];
+        cityArray.push(cityName);
+        localStorage.setItem('input',JSON.stringify(cityArray));
+        loadInputs();
 
-initialLoad();
+    } else {
+        for(var i=0; i<cityArray.length; i++){
+            
+            // checks if city name is alreay in array, if it is it does not push to array and is valid
+            if(cityArray.indexOf(cityName) !== -1 || cityArray[i] === null)  {
+                
+                return; 
+            }else{  
+                cityArray.push(cityName);
+                localStorage.setItem('input',JSON.stringify(cityArray));
+                loadInputs();
+                return; 
+               
+            }  
+ 
+        }
+    }
+    
+  
+    
+}
+// load inputs onto the screen upon entering them
+var loadInputs = function() {
+   
+    cityArray = JSON.parse(localStorage.getItem("input"));
+    // if there is no user input yet, set to empty string
+
+    // gets city name content for this input
+    for(var i=0; i<cityArray.length; i++){
+        var cityBtn=document.createElement('button');
+        $(cityBtn).addClass('col cityBtn');
+        cityBtn.innerHTML = cityArray[i];
+    }
+    // appends the new city name 
+    $('.here').append(cityBtn);
+};
+// load inputs onto page upon startup
+var initialLoad = function(){
+
+    cityArray = JSON.parse(localStorage.getItem("input"));
+    // if there is no user input yet, set to empty string
+    if(!cityArray){
+        cityArray=[];
+        var clear=document.createElement('button');
+        $(clear).addClass('col clearBtn');
+        clear.innerHTML = 'Clear Recent Searches';
+        $('.here').append(clear);
+    } else{
+
+        // gets city name content for this input
+        for(var i=0; i<cityArray.length; i++){
+            var cityBtn=document.createElement('button');
+            $(cityBtn).addClass('col cityBtn');
+            cityBtn.innerHTML = cityArray[i];
+            $('.here').append(cityBtn);
+        }
+        var clear=document.createElement('button');
+        $(clear).addClass('col clearBtn');
+        clear.innerHTML = 'Clear Recent Searches';
+        $('.here').append(clear);
+
+    }
+}
+
+
+
+
+
 
 $('.here').on('click','.cityBtn',function(){
         
@@ -254,9 +252,6 @@ $('.here').on('click','.cityBtn',function(){
     $('#forcast').text('');
     $('#currentDay').text('');
     cityName = $(this).text();
-
-
- 
     getCoord();
 
 });
@@ -278,4 +273,5 @@ $('.here').on('click','.clearBtn',function(){
 
 });
 
-
+// load screen upon startup
+initialLoad();
