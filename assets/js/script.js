@@ -31,7 +31,7 @@ var getCoord = function(){
         }
         
         })
-        // storageSave(cityName);
+    
 };
 
 // save the inputs
@@ -49,7 +49,7 @@ var storageSave = function(){
     } else {
         for(var i=0; i<cityArray.length; i++){
             
-            // checks if city name is alreay in array, if it is it does not push to array
+            // checks if city name is alreay in array, if it is it does not push to array and is valid
             if(cityArray.indexOf(cityName) !== -1 || cityArray[i] === null)  {
                 
                 return; 
@@ -172,7 +172,7 @@ var displayCurrent = function(current){
     // $(ulEl).append(image);
     $(ulEl).append(li1,li2,li3,li4);
     
-    $(title).text(cityName + " " + " " + currentDate)
+    $(title).text(cityName + ", " + " " + currentDate)
     $(title).append(img);
     $(li1).text('Temp: ' + currentTemp + ' ℉');
     $(li2).text('Wind: '+ currentWind + ' MPH');
